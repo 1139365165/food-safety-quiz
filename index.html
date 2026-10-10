@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>食品安全与特种设备监管应知应会测试卷 · 在线答题</title>
+<style>
+:root{
+  --bg:#f4f6f9;--card:#fff;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;
+  --accent:#2563eb;--ok:#16a34a;--bad:#dc2626;--warn:#b45309;
+  --okbg:#f0fdf4;--badbg:#fef2f2;--missbg:#fffbeb;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.7 -apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+  -webkit-text-size-adjust:100%;padding-bottom:86px}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);
+  box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.topbar .inner{max-width:880px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;
+  gap:16px;flex-wrap:wrap}
+.brand{font-weight:600;font-size:14.5px;line-height:1.3}
+.stats{margin-left:auto;display:flex;gap:16px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.stats b{color:var(--ink);font-size:15px;font-variant-numeric:tabular-nums}
+.stats .g b{color:var(--ok)}
+.stats .r b{color:var(--bad)}
+.stats .sc b{color:var(--accent)}
+.pbar{height:3px;background:var(--line)}
+.pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+/* ---------- hero ---------- */
+.hero{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin:18px 0 0}
+.hero h1{margin:0 0 8px;font-size:20px;letter-spacing:.2px}
+.hero .meta{font-size:13.5px;color:var(--muted);margin:0 0 6px}
+.hero .meta b{color:var(--ink)}
+.hero .note{font-size:13px;color:var(--muted);margin:8px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+/* ---------- toolbar + mode switch ---------- */
+.toolbar{display:flex;gap:10px;align-items:center;padding:14px 0 2px;flex-wrap:wrap}
+.tb{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font:inherit;
+  font-size:13.5px;cursor:pointer;color:var(--ink);transition:.13s}
+.tb:hover{border-color:var(--accent);color:var(--accent)}
+.switch{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;cursor:pointer;
+  user-select:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px}
+.switch input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer;margin:0}
+.switch .hint{font-size:12px;color:var(--muted)}
+.switch:has(input:disabled){opacity:.55;cursor:not-allowed}
+.switch input:disabled{cursor:not-allowed}
+/* segmented mode control */
+.modebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:14px 0 0}
+.modelabel{font-size:13.5px;color:var(--muted);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#f8fafc}
+.seg button{border:0;background:transparent;font:inherit;font-size:13.5px;padding:7px 20px;
+  cursor:pointer;color:var(--muted);transition:.14s;white-space:nowrap}
+.seg button:hover{color:var(--accent)}
+.seg button.on{background:var(--accent);color:#fff;font-weight:600}
+.modehint{font-size:12.5px;color:var(--muted);margin:0;line-height:1.5}
+.modehint b{color:var(--ink)}
+/* ---------- sections ---------- */
+.sec{margin:26px 0 8px;padding:12px 16px;background:#fff;border:1px solid var(--line);
+  border-left:4px solid var(--accent);border-radius:8px}
+.sec h2{margin:0;font-size:16px}
+.sec p{margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+/* ---------- question ---------- */
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:15px 18px;
+  margin:11px 0;transition:border-color .15s,background .15s;scroll-margin-top:80px}
+.q.ok{border-color:#bbf7d0;background:var(--okbg)}
+.q.bad{border-color:#fecaca;background:var(--badbg)}
+.q.miss{border-color:#fde68a;background:var(--missbg)}
+.q.flash{box-shadow:0 0 0 3px rgba(37,99,235,.4)}
+.qhead{display:flex;gap:11px;align-items:flex-start}
+.qno{flex:none;min-width:26px;height:26px;padding:0 6px;border-radius:6px;background:#eef2ff;
+  color:var(--accent);font-size:13px;font-weight:600;display:flex;align-items:center;
+  justify-content:center;margin-top:2px;font-variant-numeric:tabular-nums}
+.stem{margin:0;flex:1;font-size:15px}
+.selcount{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:#eff6ff;
+  border:1px solid #dbeafe;border-radius:20px;padding:1px 10px;margin-top:3px;opacity:0;
+  transition:opacity .15s;white-space:nowrap}
+.selcount.on{opacity:1}
+.opts{margin:12px 0 0 37px;display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:#fff;
+  border-radius:8px;padding:9px 12px;cursor:pointer;text-align:left;font:inherit;color:inherit;
+  transition:.12s;width:100%}
+.opt:hover:not(.locked){border-color:var(--accent);background:#f8faff}
+.opt .k{flex:none;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;
+  color:var(--muted);margin-top:1px}
+.opt .t{flex:1}
+.opt.correct{border-color:var(--ok);background:var(--okbg)}
+.opt.correct .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.sel{border-color:var(--accent);background:#eff6ff}
+.opt.sel .k{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt.locked{cursor:default}
+.tf .opt{font-size:16px;padding:11px 16px}
+.tf .opt .k{display:none}
+.fb{margin:11px 0 0 37px;font-size:13.5px;font-weight:600}
+.q.ok .fb{color:var(--ok)}
+.q.bad .fb{color:var(--bad)}
+.q.miss .fb{color:var(--warn)}
+.confirm{margin:11px 0 0 37px;border:1px solid var(--accent);background:var(--accent);color:#fff;
+  border-radius:8px;padding:8px 20px;font:inherit;font-size:14px;cursor:pointer;transition:.13s}
+.confirm:hover:not(:disabled){background:#1d4ed8}
+.confirm:disabled{opacity:.4;cursor:not-allowed}
+/* ---------- bottom bar ---------- */
+.subbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;
+  border-top:1px solid var(--line);box-shadow:0 -1px 4px rgba(0,0,0,.06)}
+.subbar .inner{max-width:880px;margin:0 auto;padding:11px 16px;display:flex;gap:10px;
+  align-items:center;flex-wrap:wrap}
+.sbinfo{margin-right:auto;font-size:13.5px;color:var(--muted)}
+.sbinfo b{color:var(--ink);font-variant-numeric:tabular-nums}
+.sbinfo .hi{color:var(--warn)}
+.sbinfo .g{color:var(--ok)}
+.sbinfo .r{color:var(--bad)}
+.tb.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;
+  padding:9px 26px;font-size:14px}
+.tb.primary:hover{background:#1d4ed8;border-color:#1d4ed8;color:#fff}
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.5);display:none;z-index:100;padding:20px}
+.modal.on{display:flex;align-items:flex-start;justify-content:center}
+.box{background:#fff;border-radius:12px;max-width:780px;width:100%;max-height:88vh;
+  overflow:auto;padding:20px 22px}
+.box h3{margin:0 0 4px;font-size:17px}
+.box .sub{font-size:13px;color:var(--muted);margin:0 0 14px}
+.box .close{position:sticky;top:0;float:right;border:none;background:#f3f4f6;border-radius:8px;
+  width:30px;height:30px;font-size:16px;cursor:pointer;color:var(--muted)}
+.scorebox{background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #dbeafe;
+  border-radius:12px;padding:18px 20px;margin:0 0 14px;text-align:center}
+.bigscore{font-size:15px;color:var(--muted);line-height:1}
+.bigscore b{font-size:52px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;
+  line-height:1.1;margin-right:2px}
+.scoreline{font-size:13.5px;color:var(--muted);margin-top:8px}
+.scoreline b{color:var(--ink)}
+.scoreline .ok{color:var(--ok);font-weight:600}
+.scoreline .bad{color:var(--bad);font-weight:600}
+.scoreline .miss{color:var(--warn);font-weight:600}
+.secscores{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.secscore{border:1px solid var(--line);border-radius:8px;padding:8px 14px;background:#fff;
+  font-size:12.5px;color:var(--muted);min-width:120px}
+.secscore b{display:block;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.wrongitem{border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:8px;
+  padding:12px 14px;margin:10px 0;cursor:pointer;transition:.13s}
+.wrongitem.miss{border-left-color:var(--warn)}
+.wrongitem:hover{background:#fafafa;border-color:var(--accent)}
+.wrongitem .s{font-size:14px;margin:0 0 6px}
+.wrongitem .a{font-size:12.5px;color:var(--muted)}
+.wrongitem .a .no{color:var(--bad);font-weight:600}
+.wrongitem .a .mp{color:var(--warn);font-weight:600}
+.wrongitem .a .yes{color:var(--ok);font-weight:600}
+.empty{color:var(--muted);font-size:14px;padding:10px 0}
+@media (max-width:560px){
+  .opts,.fb,.confirm{margin-left:0}
+  .hero{padding:16px}
+  .hero h1{font-size:17px}
+  .brand{font-size:13px}
+  .stats{gap:11px}
+  .sbinfo{width:100%;margin-right:0}
+  .tb.primary{flex:1}
+  .bigscore b{font-size:42px}
+  .seg button{padding:7px 14px;font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">食品安全与特种设备监管应知应会测试卷</div>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="pbar"><i id="pbar"></i></div>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <h1 id="ttl"></h1>
+    <p class="meta">满分：<b id="mFull"></b> 分 &nbsp;·&nbsp; 建议时长：<b id="mMin"></b> 分钟 &nbsp;·&nbsp; 共 <b>100</b> 题</p>
+    <p class="meta">单选 <b>70</b> 题 · 判断 <b>15</b> 题 · 多选 <b>15</b> 题 &nbsp;|&nbsp; 每题 1 分</p>
+    <p class="note" id="mNote"></p>
+  </div>
+
+  <div class="modebar">
+    <span class="modelabel">答题模式</span>
+    <div class="seg" id="modeSeg">
+      <button type="button" data-mode="practice" class="on">练习模式</button>
+      <button type="button" data-mode="exam">考试模式</button>
+    </div>
+    <p class="modehint" id="modeHint"></p>
+  </div>
+
+  <div class="toolbar">
+    <label class="switch" title="开启后每次进入页面，单选题与多选题的选项顺序随机打乱（正确答案随之变化）">
+      <input type="checkbox" id="shuffle" checked> 选项乱序
+      <span class="hint">打乱选项，避免死记答案位置</span>
+    </label>
+    <button class="tb" id="reviewBtn" style="display:none">查看答题结果</button>
+    <button class="tb" id="resetBtn">重新开始</button>
+  </div>
+
+  <main id="main"></main>
+  <p style="text-align:center;color:var(--muted);font-size:12.5px;margin:30px 0 40px" id="footTip"></p>
+</div>
+
+<div class="subbar">
+  <div class="inner">
+    <div class="sbinfo" id="sbInfo"></div>
+    <button class="tb" id="nextUnans">下一个未答</button>
+    <button class="tb primary" id="submitBtn">提交试卷</button>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <button class="close" id="closeBtn" title="关闭">✕</button>
+    <h3 id="resTitle">答题结果</h3>
+    <p class="sub" id="resSub">点击题目可直接跳回原题查看</p>
+    <div id="scoreArea"></div>
+    <div id="wrongList"></div>
+  </div>
+</div>
+
+<script>const DATA = {"title":"食品安全与特种设备监管应知应会测试卷","meta":{"fullScore":100,"minutes":30,"note":"本试卷共 100 题，其中特种设备相关知识占比 10%；包含单项选择题 70 题、判断题 15 题、多项选择题 15 题。"},"single":[{"no":1,"type":"single","stem":"从事网络餐饮经营的单位，食材及调味品存放需离地至少（ ）。","options":[{"key":"A","text":"5cm"},{"key":"B","text":"10cm"},{"key":"C","text":"15cm"},{"key":"D","text":"20cm"}],"answer":"B","score":1},{"no":2,"type":"single","stem":"网络餐饮经营单位安装的监控摄像头应正对哪个区域且保证正常使用？（ ）","options":[{"key":"A","text":"收银台"},{"key":"B","text":"店门口"},{"key":"C","text":"灶头（烹饪区）"},{"key":"D","text":"食材仓库"}],"answer":"C","score":1},{"no":3,"type":"single","stem":"网络餐饮经营单位安装监控摄像头的时间要求是？（ ）","options":[{"key":"A","text":"开业后 1 个月内"},{"key":"B","text":"开展外卖经营前"},{"key":"C","text":"平台入驻审核通过后"},{"key":"D","text":"第一次监管检查前"}],"answer":"B","score":1},{"no":4,"type":"single","stem":"网络餐饮服务中，外卖餐品封装需符合哪项要求？（ ）","options":[{"key":"A","text":"使用一次性餐盒即可"},{"key":"B","text":"规范使用外卖封签"},{"key":"C","text":"附带消费小票即可"},{"key":"D","text":"用普通塑料袋扎紧即可"}],"answer":"B","score":1},{"no":5,"type":"single","stem":"网络餐饮经营单位的厨房垃圾桶应符合以下哪项要求？（ ）","options":[{"key":"A","text":"敞口放置方便丢弃"},{"key":"B","text":"仅套垃圾袋即可"},{"key":"C","text":"垃圾桶全程加盖"},{"key":"D","text":"放置在店门口即可"}],"answer":"C","score":1},{"no":6,"type":"single","stem":"网络餐饮经营单位的厨房地面符合管控要求的做法是？（ ）","options":[{"key":"A","text":"铺纸板防滑"},{"key":"B","text":"铺纸板防油污渗透"},{"key":"C","text":"无纸板铺地"},{"key":"D","text":"铺纸板隔凉"}],"answer":"C","score":1},{"no":7,"type":"single","stem":"网络餐饮经营单位的厨房从业人员在岗时，工作衣颜色应为？（ ）","options":[{"key":"A","text":"深色耐脏即可"},{"key":"B","text":"淡色或白色"},{"key":"C","text":"无颜色要求"},{"key":"D","text":"黑色即可"}],"answer":"B","score":1},{"no":8,"type":"single","stem":"网络餐饮经营单位的从业人员上岗需持有的有效从业证件是？（ ）","options":[{"key":"A","text":"身份证"},{"key":"B","text":"居住证"},{"key":"C","text":"健康证"},{"key":"D","text":"厨师等级资格证"}],"answer":"C","score":1},{"no":9,"type":"single","stem":"网络餐饮经营单位的健康证不得出现以下哪种情况？（ ）","options":[{"key":"A","text":"在有效期内"},{"key":"B","text":"在经营场所公示"},{"key":"C","text":"过期未更换、未公示"},{"key":"D","text":"人证对应"}],"answer":"C","score":1},{"no":10,"type":"single","stem":"网络餐饮经营单位的冰箱符合管控要求的状态是？（ ）","options":[{"key":"A","text":"结厚霜"},{"key":"B","text":"无厚霜"},{"key":"C","text":"生熟食材混放"},{"key":"D","text":"塞满食材无需留空隙"}],"answer":"B","score":1},{"no":11,"type":"single","stem":"网络餐饮经营单位的消毒设施需满足以下哪项要求？（ ）","options":[{"key":"A","text":"无需运行，摆放即可"},{"key":"B","text":"正常运行并有完整记录"},{"key":"C","text":"仅用开水烫即可，无需专用设施"},{"key":"D","text":"有设施即可，不需要记录"}],"answer":"B","score":1},{"no":12,"type":"single","stem":"网络餐饮经营场所的墙面、地面、吊顶不得出现以下哪种情况？（ ）","options":[{"key":"A","text":"结构完整无破损"},{"key":"B","text":"无发霉痕迹"},{"key":"C","text":"破裂、发霉"},{"key":"D","text":"定期清洁维护"}],"answer":"C","score":1},{"no":13,"type":"single","stem":"灭蝇灯、捕鼠笼、纱窗属于餐饮经营的哪类防护设施？（ ）","options":[{"key":"A","text":"消防设施"},{"key":"B","text":"三防（病媒生物防制）设施"},{"key":"C","text":"防盗设施"},{"key":"D","text":"防尘设施"}],"answer":"B","score":1},{"no":14,"type":"single","stem":"网络餐饮经营单位的灭蝇灯、捕鼠笼等三防设施应保持什么状态？（ ）","options":[{"key":"A","text":"长期堆放在仓库"},{"key":"B","text":"监管检查时才摆放"},{"key":"C","text":"配备齐全并正常使用"},{"key":"D","text":"损坏后无需更换"}],"answer":"C","score":1},{"no":15,"type":"single","stem":"网络餐饮经营单位店内不得存在以下哪类食品？（ ）","options":[{"key":"A","text":"未售出的临期食品"},{"key":"B","text":"过期变质食品、调味品"},{"key":"C","text":"冷冻生鲜食材"},{"key":"D","text":"预包装调味品"}],"answer":"B","score":1},{"no":16,"type":"single","stem":"网络餐饮经营单位的锅具、调味品存放应符合以下哪项要求？（ ）","options":[{"key":"A","text":"可随意杂乱堆放在台面"},{"key":"B","text":"不加盖裸露摆放"},{"key":"C","text":"整洁摆放、按需加盖"},{"key":"D","text":"堆放在地面方便取用"}],"answer":"C","score":1},{"no":17,"type":"single","stem":"网络餐饮经营单位的墙面、地面及厨房设施不得有明显的哪类污渍？（ ）","options":[{"key":"A","text":"水渍"},{"key":"B","text":"油垢"},{"key":"C","text":"浮灰"},{"key":"D","text":"食物残渣"}],"answer":"B","score":1},{"no":18,"type":"single","stem":"网络餐饮经营单位的从业人员进入厨房作业时，不需要穿戴下列哪项物品？（ ）","options":[{"key":"A","text":"工作衣"},{"key":"B","text":"围裙"},{"key":"C","text":"工作帽"},{"key":"D","text":"私人拖鞋"}],"answer":"D","score":1},{"no":19,"type":"single","stem":"网络餐饮服务平台上的店铺公示信息需符合以下哪项要求？（ ）","options":[{"key":"A","text":"可适当虚假宣传引流"},{"key":"B","text":"信息真实无虚假"},{"key":"C","text":"仅需公示菜品图片"},{"key":"D","text":"无需公示任何证照"}],"answer":"B","score":1},{"no":20,"type":"single","stem":"以下哪项属于网络餐饮店铺需在平台如实公示的信息？（ ）","options":[{"key":"A","text":"营业执照、量化分级信息"},{"key":"B","text":"员工私人信息"},{"key":"C","text":"食材供应商进货底价"},{"key":"D","text":"经营者私人联系方式"}],"answer":"A","score":1},{"no":21,"type":"single","stem":"网络餐饮经营单位的食材、调味品摆放应符合以下哪项要求？（ ）","options":[{"key":"A","text":"直接落地放置"},{"key":"B","text":"随意堆放在角落"},{"key":"C","text":"摆放整齐并离地 10cm"},{"key":"D","text":"仅靠墙放置即可"}],"answer":"C","score":1},{"no":22,"type":"single","stem":"网络餐饮经营单位的烹饪台面应保持什么状态？（ ）","options":[{"key":"A","text":"堆满杂物"},{"key":"B","text":"干净整洁"},{"key":"C","text":"油垢堆积"},{"key":"D","text":"摆放私人物品"}],"answer":"B","score":1},{"no":23,"type":"single","stem":"副食品店的天花板装修材料应满足什么要求？（ ）","options":[{"key":"A","text":"颜色鲜艳即可"},{"key":"B","text":"无毒、无异味、不吸水、易清洁"},{"key":"C","text":"成本越低越好"},{"key":"D","text":"可使用普通墙纸"}],"answer":"B","score":1},{"no":24,"type":"single","stem":"副食品店的天花板不应出现以下哪种情况？（ ）","options":[{"key":"A","text":"平整干净"},{"key":"B","text":"无霉斑"},{"key":"C","text":"无有害生物隐匿"},{"key":"D","text":"破损、积灰严重"}],"answer":"D","score":1},{"no":25,"type":"single","stem":"副食品店的墙壁基础装修要求是？（ ）","options":[{"key":"A","text":"贴深色墙纸"},{"key":"B","text":"墙壁刷白"},{"key":"C","text":"保留水泥毛坯墙面"},{"key":"D","text":"铺木质隔板"}],"answer":"B","score":1},{"no":26,"type":"single","stem":"副食品店装修墙壁时禁止使用以下哪种材料？（ ）","options":[{"key":"A","text":"环保乳胶漆"},{"key":"B","text":"墙面瓷砖"},{"key":"C","text":"劣质墙纸、隔板"},{"key":"D","text":"防水涂料"}],"answer":"C","score":1},{"no":27,"type":"single","stem":"副食品店的墙壁不应出现以下哪种问题？（ ）","options":[{"key":"A","text":"无破损"},{"key":"B","text":"无霉斑"},{"key":"C","text":"无积垢"},{"key":"D","text":"霉斑、积垢堆积"}],"answer":"D","score":1},{"no":28,"type":"single","stem":"副食品店的窗户应设置以下哪种病媒防制设施？（ ）","options":[{"key":"A","text":"防盗网"},{"key":"B","text":"防蝇纱网"},{"key":"C","text":"遮光窗帘"},{"key":"D","text":"隔音玻璃"}],"answer":"B","score":1},{"no":29,"type":"single","stem":"副食品店进门处的风幕机属于哪类配置？（ ）","options":[{"key":"A","text":"强制必装"},{"key":"B","text":"选装"},{"key":"C","text":"禁止安装"},{"key":"D","text":"经营面积超 100㎡才需安装"}],"answer":"B","score":1},{"no":30,"type":"single","stem":"副食品店的后门不可采用以下哪种设施做防蝇防护？（ ）","options":[{"key":"A","text":"磁吸纱帘"},{"key":"B","text":"纱门"},{"key":"C","text":"折叠隐形推拉纱门"},{"key":"D","text":"无纱普通木门"}],"answer":"D","score":1},{"no":31,"type":"single","stem":"副食品店的地面应采用以下哪种方式处理？（ ）","options":[{"key":"A","text":"保留泥土地面"},{"key":"B","text":"用瓷砖、地板硬化固化"},{"key":"C","text":"铺设硬纸板"},{"key":"D","text":"铺设塑料布"}],"answer":"B","score":1},{"no":32,"type":"single","stem":"副食品店的地面应保持什么状态？（ ）","options":[{"key":"A","text":"平整、无裂缝、无破损、无积水污垢"},{"key":"B","text":"有细小裂缝无需修补"},{"key":"C","text":"可残留少量积水"},{"key":"D","text":"凹凸不平不影响经营"}],"answer":"A","score":1},{"no":33,"type":"single","stem":"副食品店货架上存放的所有食品应满足什么存放要求？（ ）","options":[{"key":"A","text":"直接接触地面"},{"key":"B","text":"离墙离地 10cm 以上"},{"key":"C","text":"仅离墙即可，不用离地"},{"key":"D","text":"仅离地即可，不用离墙"}],"answer":"B","score":1},{"no":34,"type":"single","stem":"副食品店内销售的所有食品，不需要标示下列哪项信息？（ ）","options":[{"key":"A","text":"品名"},{"key":"B","text":"价格"},{"key":"C","text":"计价单位"},{"key":"D","text":"进货成本价"}],"answer":"D","score":1},{"no":35,"type":"single","stem":"副食品店销售散装食品时，以下哪项不是标签必须标注的内容？（ ）","options":[{"key":"A","text":"食品名称、生产日期"},{"key":"B","text":"保质期、生产地址"},{"key":"C","text":"生产企业名称及联系方式"},{"key":"D","text":"食品的具体成本"}],"answer":"D","score":1},{"no":36,"type":"single","stem":"副食品店销售散装食品，除规范贴标外，还需留存以下哪项材料？（ ）","options":[{"key":"A","text":"进货商户的身份证复印件"},{"key":"B","text":"产品合格证明、规格配料表"},{"key":"C","text":"运输司机的驾驶证复印件"},{"key":"D","text":"门店房租合同"}],"answer":"B","score":1},{"no":37,"type":"single","stem":"“蓝帽子” 是以下哪类食品的专属标识？（ ）","options":[{"key":"A","text":"普通预包装食品"},{"key":"B","text":"保健食品"},{"key":"C","text":"散装食品"},{"key":"D","text":"临期食品"}],"answer":"B","score":1},{"no":38,"type":"single","stem":"副食品店销售保健食品，应当设置什么陈列设施？（ ）","options":[{"key":"A","text":"散称售卖区"},{"key":"B","text":"专柜（专区）"},{"key":"C","text":"临保食品区"},{"key":"D","text":"冷藏柜"}],"answer":"B","score":1},{"no":39,"type":"single","stem":"保健食品销售专区 / 专柜的显著位置，应当标明的法定警示语是？（ ）","options":[{"key":"A","text":"本品可替代药物"},{"key":"B","text":"本品不能代替药物"},{"key":"C","text":"治病效果显著"},{"key":"D","text":"有病治病、无病强身"}],"answer":"B","score":1},{"no":40,"type":"single","stem":"保健食品销售区域需在显著位置标明的字样是？（ ）","options":[{"key":"A","text":"保健食品销售专区或者专柜"},{"key":"B","text":"特价药品专区"},{"key":"C","text":"普通食品售卖区"},{"key":"D","text":"临期食品专区"}],"answer":"A","score":1},{"no":41,"type":"single","stem":"副食品店针对临近保质期的食品，应当设置什么专属区域？（ ）","options":[{"key":"A","text":"退货区"},{"key":"B","text":"临保食品专区"},{"key":"C","text":"无标识促销区"},{"key":"D","text":"报废区"}],"answer":"B","score":1},{"no":42,"type":"single","stem":"副食品店的食品仓库应当如何设置？（ ）","options":[{"key":"A","text":"和杂物间合用"},{"key":"B","text":"单独设立"},{"key":"C","text":"和员工宿舍合用"},{"key":"D","text":"和卫生间连通"}],"answer":"B","score":1},{"no":43,"type":"single","stem":"副食品店的食品仓库不得与下列哪类物品共同存放？（ ）","options":[{"key":"A","text":"食品外包装箱"},{"key":"B","text":"非食品物品"},{"key":"C","text":"储物货架"},{"key":"D","text":"温湿度计"}],"answer":"B","score":1},{"no":44,"type":"single","stem":"副食品店的食品仓库内严禁存放以下哪类物品？（ ）","options":[{"key":"A","text":"预包装食品"},{"key":"B","text":"散装食品"},{"key":"C","text":"有毒有害物品"},{"key":"D","text":"保健食品"}],"answer":"C","score":1},{"no":45,"type":"single","stem":"以下哪种食品可以直接放置在副食品店地面上销售？（ ）","options":[{"key":"A","text":"预包装饼干"},{"key":"B","text":"桶装饮用水"},{"key":"C","text":"所有食品都不可以"},{"key":"D","text":"整箱纯牛奶"}],"answer":"C","score":1},{"no":46,"type":"single","stem":"副食品店墙壁出现霉斑、积垢，属于违反哪项管控要求？（ ）","options":[{"key":"A","text":"天花板管控要求"},{"key":"B","text":"墙壁管控要求"},{"key":"C","text":"地面管控要求"},{"key":"D","text":"货架管控要求"}],"answer":"B","score":1},{"no":47,"type":"single","stem":"副食品店天花板出现蟑螂藏匿、老鼠筑巢的情况，违反了哪部分管控要求？（ ）","options":[{"key":"A","text":"天花板管控要求"},{"key":"B","text":"门窗管控要求"},{"key":"C","text":"地面管控要求"},{"key":"D","text":"仓库管控要求"}],"answer":"A","score":1},{"no":48,"type":"single","stem":"散装食品的生产日期、保质期信息应当标注在什么位置？（ ）","options":[{"key":"A","text":"随意贴在货架侧面"},{"key":"B","text":"对应散装食品的标识牌或盛放容器上"},{"key":"C","text":"贴在仓库门口"},{"key":"D","text":"无需标注"}],"answer":"B","score":1},{"no":49,"type":"single","stem":"以下关于副食品店门窗防蝇设施的说法，正确的是？（ ）","options":[{"key":"A","text":"窗户不需要安装纱网"},{"key":"B","text":"后门可全天敞开无需遮挡"},{"key":"C","text":"窗户应设防蝇纱网，后门配纱帘或纱门"},{"key":"D","text":"仅夏季需要安装防蝇设施"}],"answer":"C","score":1},{"no":50,"type":"single","stem":"副食品店地面出现破损、裂缝，正确的处理方式是？（ ）","options":[{"key":"A","text":"铺纸板临时遮挡"},{"key":"B","text":"及时修补硬化，保持地面平整"},{"key":"C","text":"无需处理"},{"key":"D","text":"堆货物挡住即可"}],"answer":"B","score":1},{"no":51,"type":"single","stem":"临保食品专区是用于存放哪类食品的专属区域？（ ）","options":[{"key":"A","text":"已经过期的食品"},{"key":"B","text":"临近保质期但仍在保质期内的食品"},{"key":"C","text":"假冒伪劣食品"},{"key":"D","text":"保健食品"}],"answer":"B","score":1},{"no":52,"type":"single","stem":"以下关于保健食品存放的说法，正确的是？（ ）","options":[{"key":"A","text":"可以和普通散称食品混放"},{"key":"B","text":"应当设专柜（专区）存放"},{"key":"C","text":"可以放在散称区售卖"},{"key":"D","text":"放在收银台顺带售卖无需标识"}],"answer":"B","score":1},{"no":53,"type":"single","stem":"副食品店食品明码标价需要标注的三个核心要素是？（ ）","options":[{"key":"A","text":"品名、价格、计价单位"},{"key":"B","text":"品名、产地、保质期"},{"key":"C","text":"价格、生产厂家、生产日期"},{"key":"D","text":"计价单位、保质期、产地"}],"answer":"A","score":1},{"no":54,"type":"single","stem":"副食品店选用天花板材料时，以下哪项不是法定要求的特性？（ ）","options":[{"key":"A","text":"无毒无异味"},{"key":"B","text":"不吸水、易清洁"},{"key":"C","text":"价格昂贵、外观华丽"},{"key":"D","text":"符合食品安全标准"}],"answer":"C","score":1},{"no":55,"type":"single","stem":"副食品店装修墙壁时，以下哪种做法是合规的？（ ）","options":[{"key":"A","text":"墙壁刷白，保持无破损、霉斑、积垢"},{"key":"B","text":"为省钱使用劣质墙纸"},{"key":"C","text":"毛坯墙面无需处理"},{"key":"D","text":"用隔板遮盖原有霉斑"}],"answer":"A","score":1},{"no":56,"type":"single","stem":"副食品店后门安装磁吸纱帘的主要作用是？（ ）","options":[{"key":"A","text":"冬季保暖"},{"key":"B","text":"阻挡蝇类等病媒生物进入"},{"key":"C","text":"防盗"},{"key":"D","text":"遮挡强光"}],"answer":"B","score":1},{"no":57,"type":"single","stem":"以下哪种地面状态符合副食品店装修合规要求？（ ）","options":[{"key":"A","text":"硬化平整，无积水污垢"},{"key":"B","text":"凹凸不平"},{"key":"C","text":"有多处贯通裂缝"},{"key":"D","text":"常年积水湿滑"}],"answer":"A","score":1},{"no":58,"type":"single","stem":"食品要求离墙离地 10cm 以上存放的目的不包括下列哪项？（ ）","options":[{"key":"A","text":"防潮通风"},{"key":"B","text":"方便清洁、减少虫害侵扰"},{"key":"C","text":"降低食品污染风险"},{"key":"D","text":"增加经营者摆放难度"}],"answer":"D","score":1},{"no":59,"type":"single","stem":"散装食品的合格证明应当由哪方留存备查？（ ）","options":[{"key":"A","text":"消费者自行保管"},{"key":"B","text":"食品经营者（副食品店）"},{"key":"C","text":"监管人员个人留存"},{"key":"D","text":"不需要留存"}],"answer":"B","score":1},{"no":60,"type":"single","stem":"保健食品标注 “本品不能代替药物” 警示语的核心目的是？（ ）","options":[{"key":"A","text":"提示消费者保健食品不具备疾病治疗功效"},{"key":"B","text":"说明保健食品属于药品"},{"key":"C","text":"引导消费者大量购买"},{"key":"D","text":"仅为装饰作用"}],"answer":"A","score":1},{"no":61,"type":"single","stem":"副食品店设置临保食品专区最主要的作用是？（ ）","options":[{"key":"A","text":"方便消费者识别，明确提示食品保质期临近"},{"key":"B","text":"抬高商品售价"},{"key":"C","text":"掩盖食品过期事实"},{"key":"D","text":"降低摆放标准"}],"answer":"A","score":1},{"no":62,"type":"single","stem":"食品仓库要求单独设置、严禁有毒有害物品进入，核心目的是？（ ）","options":[{"key":"A","text":"防止食品受到污染，保障食品安全"},{"key":"B","text":"扩大仓库使用面积"},{"key":"C","text":"方便库存盘点"},{"key":"D","text":"控制进货总量"}],"answer":"A","score":1},{"no":63,"type":"single","stem":"网络餐饮经营单位的消毒工作应符合以下哪项要求？（ ）","options":[{"key":"A","text":"无需记录，凭经验消毒"},{"key":"B","text":"消毒设施正常运行，如实记录消毒情况"},{"key":"C","text":"一年集中记录一次即可"},{"key":"D","text":"监管检查时临时补记录即可"}],"answer":"B","score":1},{"no":64,"type":"single","stem":"以下关于网络餐饮店铺证照公示的说法，正确的是？（ ）","options":[{"key":"A","text":"平台展示信息可虚假美化引流"},{"key":"B","text":"如实公示营业执照、量化分级等法定信息"},{"key":"C","text":"不需要公示任何证照"},{"key":"D","text":"仅公示菜品图片即可"}],"answer":"B","score":1},{"no":65,"type":"single","stem":"特种设备投入使用前或者投入使用后多少日内，需向特种设备安全监管部门申请办理使用登记？（ ）","options":[{"key":"A","text":"15 日"},{"key":"B","text":"30 日"},{"key":"C","text":"60 日"},{"key":"D","text":"90 日"}],"answer":"B","score":1},{"no":66,"type":"single","stem":"特种设备申请定期检验，需在检验合格有效期届满前多长时间向特种设备检验机构提出要求？（ ）","options":[{"key":"A","text":"1 周"},{"key":"B","text":"半个月"},{"key":"C","text":"1 个月"},{"key":"D","text":"2 个月"}],"answer":"C","score":1},{"no":67,"type":"single","stem":"按要求需制定特种设备应急专项预案的单位，应急演练的最低频次要求为？（ ）","options":[{"key":"A","text":"每月至少 1 次"},{"key":"B","text":"每季度至少 1 次"},{"key":"C","text":"每年至少 1 次"},{"key":"D","text":"每两年至少 1 次"}],"answer":"C","score":1},{"no":68,"type":"single","stem":"法定持证的特种设备作业人员，申请证书复审的时间要求为证书有效期届满前多长时间？（ ）","options":[{"key":"A","text":"1 个月以前"},{"key":"B","text":"3 个月以前"},{"key":"C","text":"6 个月以前"},{"key":"D","text":"到期当天即可"}],"answer":"A","score":1},{"no":69,"type":"single","stem":"气瓶充装的检查记录和充装记录，最低保存时间为多久？（ ）","options":[{"key":"A","text":"6 个月"},{"key":"B","text":"12 个月"},{"key":"C","text":"24 个月"},{"key":"D","text":"36 个月"}],"answer":"B","score":1},{"no":70,"type":"single","stem":"工业锅炉运行中，水位表冲洗的最低频次要求为？（ ）","options":[{"key":"A","text":"每天至少一次"},{"key":"B","text":"每班至少一次"},{"key":"C","text":"每周至少一次"},{"key":"D","text":"每月至少一次"}],"answer":"B","score":1}],"tf":[{"no":1,"type":"tf","stem":"网络餐饮经营单位的墙面、地面、吊顶只要无明显污渍即可，轻微破裂、发霉不影响正常经营。","answer":"×","score":1},{"no":2,"type":"tf","stem":"经营外卖的餐饮店铺应当先安装监控摄像头，摄像头正对灶头且正常使用后方可开展外卖经营。","answer":"√","score":1},{"no":3,"type":"tf","stem":"网络餐饮店铺的冰箱结厚霜不会影响食品安全，无需定期除霜清理。","answer":"×","score":1},{"no":4,"type":"tf","stem":"网络餐饮从业人员只要曾经办理过健康证即可，证件过期也可以继续上岗。","answer":"×","score":1},{"no":5,"type":"tf","stem":"灭蝇灯、捕鼠笼等三防设施仅需在监管检查时摆放，日常无需通电、正常使用。","answer":"×","score":1},{"no":6,"type":"tf","stem":"网络餐饮厨房地面容易湿滑，可以铺设纸板防滑防油。","answer":"×","score":1},{"no":7,"type":"tf","stem":"网络餐饮厨房的垃圾桶为方便丢弃厨余垃圾，可以全程敞口不加盖。","answer":"×","score":1},{"no":8,"type":"tf","stem":"副食品店的天花板装修材料需满足无毒、无异味、不吸水、易清洁的要求，日常需保持无破损、无霉斑。","answer":"√","score":1},{"no":9,"type":"tf","stem":"副食品店装修墙壁时，为控制经营成本可使用劣质墙纸、隔板遮挡墙面原有污渍。","answer":"×","score":1},{"no":10,"type":"tf","stem":"副食品店的窗户必须安装防蝇纱网，进门处的风幕机属于选装项，经营户可根据实际情况选择。","answer":"√","score":1},{"no":11,"type":"tf","stem":"副食品店销售的所有食品都需明码标价，清晰标注品名、价格和计价单位。","answer":"√","score":1},{"no":12,"type":"tf","stem":"销售保健食品的副食品店，只要摆放带蓝帽子标识的产品即可，无需设置专柜也不需要标注警示语。","answer":"×","score":1},{"no":13,"type":"tf","stem":"为提升仓库空间利用率，副食品店的食品仓库可以和消杀药剂、清洁用品等非食品物品混放。","answer":"×","score":1},{"no":14,"type":"tf","stem":"特种设备作业人员在作业过程中发现事故隐患或者其他不安全因素，应当立即向特种设备安全管理人员和单位有关负责人报告。","answer":"√","score":1},{"no":15,"type":"tf","stem":"工业锅炉发生严重缺水事故时，应第一时间向锅内大量进水降温，再缓慢停炉。","answer":"×","score":1}],"multi":[{"no":1,"type":"multi","stem":"网络餐饮经营场所的 “三防”（病媒生物防制）设施包括以下哪些？（ ）","options":[{"key":"A","text":"灭蝇灯"},{"key":"B","text":"捕鼠笼"},{"key":"C","text":"纱窗"},{"key":"D","text":"防盗门锁"}],"answer":"ABC","score":1},{"no":2,"type":"multi","stem":"网络餐饮经营单位从业人员上岗需符合的卫生要求有哪些？（ ）","options":[{"key":"A","text":"持有有效期内的健康证"},{"key":"B","text":"穿戴淡色或白色工作衣"},{"key":"C","text":"按要求穿戴工作帽、围裙"},{"key":"D","text":"可穿拖鞋上岗方便操作"}],"answer":"ABC","score":1},{"no":3,"type":"multi","stem":"网络餐饮经营单位的厨房环境卫生要求包括以下哪些？（ ）","options":[{"key":"A","text":"台面干净整洁，锅具、调味品不杂乱堆放、按需加盖"},{"key":"B","text":"墙面、地面及厨房设施无明显油垢"},{"key":"C","text":"垃圾桶加盖，地面不铺设纸板"},{"key":"D","text":"食材直接堆放在地面方便随时取用"}],"answer":"ABC","score":1},{"no":4,"type":"multi","stem":"网络餐饮经营单位的食材和调味品存放要求包括哪些？（ ）","options":[{"key":"A","text":"无过期、变质产品"},{"key":"B","text":"分类摆放整齐"},{"key":"C","text":"离地 10cm 存放"},{"key":"D","text":"可与消杀药剂共同存放节省空间"}],"answer":"ABC","score":1},{"no":5,"type":"multi","stem":"以下属于网络餐饮店铺需要在外卖平台如实公示的信息有哪些？（ ）","options":[{"key":"A","text":"营业执照"},{"key":"B","text":"食品安全量化分级信息"},{"key":"C","text":"虚假折扣引流信息"},{"key":"D","text":"无证经营情况说明"}],"answer":"AB","score":1},{"no":6,"type":"multi","stem":"关于网络餐饮经营的设施与餐品管理要求，下列说法正确的有哪些？（ ）","options":[{"key":"A","text":"外卖餐品规范使用外卖封签"},{"key":"B","text":"冰箱无厚霜，消毒设施正常运行并有记录"},{"key":"C","text":"摄像头正对灶头，先安装再开展外卖经营"},{"key":"D","text":"墙面、地面、吊顶结构完整，无破裂、发霉"}],"answer":"ABCD","score":1},{"no":7,"type":"multi","stem":"副食品店天花板的装修及日常维护要求包括以下哪些？（ ）","options":[{"key":"A","text":"装修材料无毒、无异味、不吸水、易清洁"},{"key":"B","text":"无破损、无霉斑"},{"key":"C","text":"无灰尘聚集、无有害生物隐匿"},{"key":"D","text":"可直接使用普通劣质石膏板"}],"answer":"ABC","score":1},{"no":8,"type":"multi","stem":"副食品店墙壁的装修及日常维护要求有哪些？（ ）","options":[{"key":"A","text":"墙壁统一刷白"},{"key":"B","text":"保持无破损、无霉斑、无积垢"},{"key":"C","text":"禁止使用劣质墙纸、隔板"},{"key":"D","text":"为美观可张贴深色劣质墙纸"}],"answer":"ABC","score":1},{"no":9,"type":"multi","stem":"副食品店门窗的病媒防制设施要求包括哪些？（ ）","options":[{"key":"A","text":"窗户设置防蝇纱网"},{"key":"B","text":"进门处风幕机可选择安装"},{"key":"C","text":"后门安装磁吸纱帘、纱门或折叠隐形推拉纱门"},{"key":"D","text":"门窗无需设置任何防蝇设施"}],"answer":"ABC","score":1},{"no":10,"type":"multi","stem":"副食品店地面的装修及日常维护要求有哪些？（ ）","options":[{"key":"A","text":"采用瓷砖、地板等材质硬化固化"},{"key":"B","text":"地面平整、无裂缝、无破损"},{"key":"C","text":"无积水、无污垢"},{"key":"D","text":"可保留原生泥土地面"}],"answer":"ABC","score":1},{"no":11,"type":"multi","stem":"副食品店销售散装食品，食品标签需要标注的内容有哪些？（ ）","options":[{"key":"A","text":"食品名称、生产日期、保质期"},{"key":"B","text":"生产地址、生产企业名称"},{"key":"C","text":"生产企业联系方式"},{"key":"D","text":"食品的进货底价"}],"answer":"ABC","score":1},{"no":12,"type":"multi","stem":"副食品店销售保健食品的法定要求包括以下哪些？（ ）","options":[{"key":"A","text":"设置销售专柜或者专区"},{"key":"B","text":"显著位置标明 “保健食品销售专区或者专柜” 字样"},{"key":"C","text":"显著位置标注 “本品不能代替药物” 警示语"},{"key":"D","text":"与普通散装食品混放售卖，无需设置标识"}],"answer":"ABC","score":1},{"no":13,"type":"multi","stem":"副食品店食品仓库的管理要求包括哪些？（ ）","options":[{"key":"A","text":"食品仓库单独设立"},{"key":"B","text":"不得与非食品物品共同存放"},{"key":"C","text":"仓库内严禁存放有毒有害物品"},{"key":"D","text":"可与员工宿舍、卫生间连通使用"}],"answer":"ABC","score":1},{"no":14,"type":"multi","stem":"特种设备安全管理人员应当严格把关，坚决不采购、不使用下列哪类特种设备？（ ）","options":[{"key":"A","text":"未取得许可生产的特种设备"},{"key":"B","text":"未经检验合格的特种设备"},{"key":"C","text":"国家明令淘汰的特种设备"},{"key":"D","text":"已经报废的特种设备"}],"answer":"ABCD","score":1},{"no":15,"type":"multi","stem":"气瓶充装作业人员应当严格落实充装前检查制度，严禁充装下列哪些不符合规范要求的气瓶？（ ）","options":[{"key":"A","text":"报废瓶、过期瓶"},{"key":"B","text":"改装瓶、翻新瓶"},{"key":"C","text":"非自有产权瓶（托管气瓶除外）"},{"key":"D","text":"检验合格的自有产权气瓶"}],"answer":"ABC","score":1}]};</script>
+<script>
+(function(){
+  'use strict';
+
+  var SECTIONS = [
+    {key:'single', title:'一、单项选择题', desc:'共 70 题，每题 1 分，共 70 分'},
+    {key:'tf',     title:'二、判断题',     desc:'共 15 题，每题 1 分，共 15 分'},
+    {key:'multi',  title:'三、多项选择题', desc:'共 15 题，每题 1 分，共 15 分'}
+  ];
+  var TOTAL = 100;
+
+  /**
+   * mode: 'practice' 练习模式 —— 每题作答后立即判分并显示正确答案
+   *       'exam'     考试模式 —— 先作答，点「提交试卷」后统一判分
+   */
+  var state = { mode:'practice', shuffle:true, order:{}, picked:{}, graded:{}, submitted:false };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  };
+  function qid(sec,no){ return sec + '-' + no; }
+  function shuffleArr(a){
+    for(var i=a.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  // 显示顺序（乱序时缓存，保证重绘稳定）
+  function displayOpts(sec,q){
+    var id = qid(sec,q.no);
+    if(!state.order[id]){
+      var arr;
+      if(q.type === 'tf'){
+        arr = [{key:'√', text:'正确'}, {key:'×', text:'错误'}];   // 判断题固定顺序
+      } else {
+        arr = q.options.map(function(o){ return {key:o.key, text:o.text}; });
+        if(state.shuffle) shuffleArr(arr);
+      }
+      state.order[id] = arr;
+    }
+    return state.order[id];
+  }
+
+  // 正确答案对应的"选项文本"集合——按文本判题，因此乱序后依然正确
+  function correctTexts(q){
+    if(q.type === 'tf') return [ q.answer === '√' ? '正确' : '错误' ];
+    return q.options.filter(function(o){ return q.answer.indexOf(o.key) > -1; })
+                    .map(function(o){ return o.text; });
+  }
+  function judge(q,picked){
+    var c = correctTexts(q);
+    if(picked.length !== c.length) return false;
+    for(var i=0;i<picked.length;i++){ if(c.indexOf(picked[i]) < 0) return false; }
+    return true;
+  }
+  function lockedFor(id){
+    // 练习模式：该题已判分即锁定；考试模式：交卷后全部锁定
+    return !!state.graded[id];
+  }
+
+  // ---------- 渲染单题（仅在构建/重置/切模式/换乱序时调用）----------
+  function card(sec,q){
+    var id = qid(sec,q.no);
+    var opts = displayOpts(sec,q);
+
+    var el = document.createElement('div');
+    el.className = 'q' + (sec==='tf' ? ' tf' : '');
+    el.id = id;
+
+    var head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = '<span class="qno">' + q.no + '</span><p class="stem">' + esc(q.stem) + '</p>' +
+                     '<span class="selcount"></span>';
+    el.appendChild(head);
+
+    var box = document.createElement('div');
+    box.className = 'opts';
+    opts.forEach(function(o,i){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt';
+      b.innerHTML = '<span class="k">' + (q.type==='tf' ? '' : 'ABCD'.charAt(i)) + '</span>' +
+                    '<span class="t">' + esc(o.text) + '</span>';
+      b.addEventListener('click', function(){ onPick(sec,q,o.text); });
+      box.appendChild(b);
+    });
+    el.appendChild(box);
+
+    // 多选题需要「确认答案」按钮；判断题/单选题不需要
+    if(q.type === 'multi'){
+      var cb = document.createElement('button');
+      cb.type = 'button';
+      cb.className = 'confirm';
+      cb.textContent = '确认答案';
+      cb.disabled = true;
+      cb.addEventListener('click', function(){
+        var s = state.picked[id];
+        if(s && s.length && !lockedFor(id)) gradeNow(sec,q,s.slice());
+      });
+      el.appendChild(cb);
+    }
+
+    var fb = document.createElement('div');
+    fb.className = 'fb';
+    fb.style.display = 'none';
+    el.appendChild(fb);
+
+    repaint(sec,q);      // 依据当前状态补齐样式
+    return el;
+  }
+
+  /**
+   * 就地刷新一道题的外观。
+   * 关键：绝不重建卡片 DOM —— 重建会让正在进行的点击失去目标节点
+   * （mousedown 落在旧节点、mouseup 时节点已被替换，浏览器便不再派发 click），
+   * 造成「明明点了却没选上」。这里只切 class / 显隐元素，节点保持不变。
+   */
+  function repaint(sec,q){
+    var cardEl = $(qid(sec,q.no));
+    if(!cardEl) return;
+    var id = qid(sec,q.no);
+    var picked = state.picked[id] || [];
+    var g = state.graded[id];
+    var opts = displayOpts(sec,q);
+    var ctexts = correctTexts(q);
+    var btns = cardEl.querySelectorAll('.opt');
+    var correctLetters = [];
+
+    for(var i=0;i<btns.length && i<opts.length;i++){
+      var b = btns[i], txt = opts[i].text;
+      var isCorrect = ctexts.indexOf(txt) > -1;
+      var isPicked  = picked.indexOf(txt) > -1;
+      b.classList.remove('sel','correct','wrong','locked');
+      if(g){
+        b.classList.add('locked');
+        if(isCorrect){ b.classList.add('correct'); if(q.type!=='tf') correctLetters.push('ABCD'.charAt(i)); }
+        else if(isPicked){ b.classList.add('wrong'); }
+      } else if(isPicked){
+        b.classList.add('sel');
+      }
+    }
+
+    cardEl.classList.remove('ok','bad','miss');
+    if(g) cardEl.classList.add(g.unanswered ? 'miss' : (g.ok ? 'ok' : 'bad'));
+
+    var fb = cardEl.querySelector('.fb');
+    if(g){
+      var ansTxt = (q.type === 'tf') ? (q.answer === '√' ? '正确' : '错误')
+                                     : correctLetters.join('、');
+      fb.textContent = g.unanswered
+        ? ('— 未作答　正确答案：' + ansTxt)
+        : (g.ok ? '✓ 回答正确' : ('✗ 回答错误　正确答案：' + ansTxt));
+      fb.style.display = '';
+    } else {
+      fb.textContent = '';
+      fb.style.display = 'none';
+    }
+
+    var cb = cardEl.querySelector('.confirm');
+    if(cb){
+      cb.style.display = (!g && q.type==='multi') ? '' : 'none';
+      cb.disabled = !picked.length;
+    }
+
+    var badge = cardEl.querySelector('.selcount');
+    if(badge){
+      if(!g && q.type === 'multi' && picked.length){
+        badge.textContent = '已选 ' + picked.length + ' 项';
+        badge.classList.add('on');
+      } else {
+        badge.textContent = '';
+        badge.classList.remove('on');
+      }
+    }
+  }
+
+  // ---------- 作答 ----------
+  function onPick(sec,q,text){
+    var id = qid(sec,q.no);
+    if(lockedFor(id)) return;                    // 已判分（练习）或已交卷（考试）
+    if(state.submitted) return;
+
+    var cur = state.picked[id] || (state.picked[id] = []);
+
+    if(q.type === 'multi'){
+      var k = cur.indexOf(text);
+      if(k > -1) cur.splice(k,1); else cur.push(text);
+      repaint(sec,q);
+      updateStats();
+      return;
+    }
+
+    // 单选 / 判断：替换式选择
+    state.picked[id] = [text];
+    if(state.mode === 'practice'){
+      gradeNow(sec,q,[text]);                    // 练习模式立即判分
+      return;
+    }
+    repaint(sec,q);
+    updateStats();
+  }
+
+  // 判一道题（练习模式逐题判；考试模式交卷时批量判）
+  function gradeNow(sec,q,picked){
+    var id = qid(sec,q.no);
+    state.graded[id] = { ok: judge(q,picked), unanswered:false, picked:picked.slice() };
+    repaint(sec,q);
+    updateStats();
+  }
+
+  // ---------- 交卷（仅考试模式）----------
+  function submitPaper(){
+    if(state.mode !== 'exam' || state.submitted) return;
+    var done = 0;
+    SECTIONS.forEach(function(s){
+      DATA[s.key].forEach(function(q){
+        if((state.picked[qid(s.key,q.no)] || []).length) done++;
+      });
+    });
+    var miss = TOTAL - done;
+    var msg = miss > 0
+      ? ('还有 ' + miss + ' 题未作答，未作答不得分。\n确定要提交试卷吗？')
+      : '确定要提交试卷吗？提交后将无法修改答案。';
+    if(!confirm(msg)) return;
+
+    state.submitted = true;
+    SECTIONS.forEach(function(s){
+      DATA[s.key].forEach(function(q){
+        var id = qid(s.key,q.no);
+        var p = state.picked[id] || [];
+        state.graded[id] = p.length
+          ? { ok: judge(q,p), unanswered:false, picked:p.slice() }
+          : { ok:false, unanswered:true, picked:[] };
+      });
+    });
+    $('shuffle').disabled = true;
+    buildAll();
+    updateStats();
+    openResult();
+  }
+
+  // ---------- 统计 ----------
+  /**
+   * 统计口径（两种模式统一）：
+   *   done    已判分的题数
+   *   pending 已选择但尚未判分的题数（仅练习模式下多选勾选后未点「确认答案」）
+   *   ok/bad  已判分中的对 / 错
+   * 这样练习模式下「只勾选未确认」的多选不会被误算成答错。
+   */
+  function tally(){
+    var done=0, ok=0, bad=0, pending=0;
+    SECTIONS.forEach(function(s){
+      DATA[s.key].forEach(function(q){
+        var id = qid(s.key,q.no);
+        var g = state.graded[id];
+        if(g){
+          done++;
+          if(g.ok) ok++; else bad++;
+        } else if((state.picked[id] || []).length){
+          pending++;
+        }
+      });
+    });
+    return {done:done, ok:ok, bad:bad, pending:pending};
+  }
+
+  function updateStats(){
+    var t = tally();
+    var isExam = (state.mode === 'exam');
+    var answered = t.done + t.pending;      // 考试模式下"已选择"即视为已答
+
+    if(isExam && state.submitted){
+      $('stats').innerHTML =
+        '<span class="g">正确 <b>' + t.ok + '</b></span>' +
+        '<span class="r">错误 <b>' + (TOTAL - t.ok) + '</b></span>' +
+        '<span class="sc">得分 <b>' + t.ok + '</b></span>';
+      $('sbInfo').innerHTML = '本卷得分 <b>' + t.ok + '</b> / ' + TOTAL + ' 分';
+      $('nextUnans').style.display = 'none';
+      $('submitBtn').style.display = 'none';
+      $('reviewBtn').style.display = '';
+      $('pbar').style.width = '100%';
+      return;
+    }
+
+    if(isExam){
+      $('stats').innerHTML =
+        '<span>已答 <b>' + answered + '</b>/' + TOTAL + '</span>' +
+        '<span>未答 <b class="' + (answered<TOTAL?'hi':'') + '">' + (TOTAL - answered) + '</b></span>';
+      $('sbInfo').innerHTML = '已答 <b>' + answered + '</b> / ' + TOTAL +
+        (answered < TOTAL ? '　未答 <b class="hi">' + (TOTAL - answered) + '</b>'
+                          : '　已全部作答，可以提交了');
+      $('nextUnans').style.display = (answered < TOTAL) ? '' : 'none';
+      $('submitBtn').style.display = '';
+      $('reviewBtn').style.display = answered ? '' : 'none';
+    } else {
+      // 练习模式：区分「已判分」与「已选待确认」，避免把未确认的多选算成答错
+      $('stats').innerHTML =
+        '<span>已答 <b>' + t.done + '</b>/' + TOTAL + '</span>' +
+        '<span class="g">正确 <b>' + t.ok + '</b></span>' +
+        '<span class="r">错误 <b>' + t.bad + '</b></span>' +
+        '<span class="sc">得分 <b>' + t.ok + '</b></span>';
+      var extra = t.pending ? '　待确认 <b class="hi">' + t.pending + '</b>' : '';
+      $('sbInfo').innerHTML = t.done
+        ? ('已判分 <b>' + t.done + '</b> / ' + TOTAL +
+           '　正确 <b class="g">' + t.ok + '</b>　错误 <b class="r">' + t.bad + '</b>' + extra)
+        : ('共 ' + TOTAL + ' 题　选择答案后立即判分');
+      $('nextUnans').style.display = (t.done < TOTAL) ? '' : 'none';
+      $('submitBtn').style.display = 'none';
+      $('reviewBtn').style.display = t.done ? '' : 'none';
+    }
+    $('pbar').style.width = (t.done / TOTAL * 100) + '%';
+  }
+
+  function buildAll(){
+    var main = $('main');
+    main.innerHTML = '';
+    SECTIONS.forEach(function(s){
+      var box = document.createElement('section');
+      var hd = document.createElement('div');
+      hd.className = 'sec';
+      hd.innerHTML = '<h2>' + s.title + '</h2><p>' + s.desc + '</p>';
+      box.appendChild(hd);
+      DATA[s.key].forEach(function(q){ box.appendChild(card(s.key,q)); });
+      main.appendChild(box);
+    });
+    updateStats();
+  }
+
+  // ---------- 成绩与错题 ----------
+  function sectionScore(s){
+    var total = 0, ok = 0;
+    DATA[s.key].forEach(function(q){
+      total++;
+      var g = state.graded[qid(s.key,q.no)];
+      if(g && g.ok) ok++;
+    });
+    return {total:total, ok:ok};
+  }
+
+  function renderResult(){
+    var ok = 0, bad = 0, miss = 0;
+    SECTIONS.forEach(function(s){
+      DATA[s.key].forEach(function(q){
+        var g = state.graded[qid(s.key,q.no)];
+        if(!g) return;
+        if(g.ok) ok++; else if(g.unanswered) miss++; else bad++;
+      });
+    });
+
+    var secHtml = SECTIONS.map(function(s){
+      var r = sectionScore(s);
+      return '<div class="secscore">' + s.title.replace(/^[一二三]、/,'') +
+             '<b>' + r.ok + ' / ' + r.total + '</b></div>';
+    }).join('');
+
+    $('resTitle').textContent = (state.mode === 'exam') ? '考试成绩' : '练习结果';
+
+    $('scoreArea').innerHTML =
+      '<div class="scorebox">' +
+        '<div class="bigscore"><b>' + ok + '</b>分</div>' +
+        '<div class="scoreline">' +
+          '答对 <span class="ok">' + ok + '</span> 题　' +
+          '答错 <span class="bad">' + bad + '</span> 题　' +
+          '未作答 <span class="miss">' + miss + '</span> 题　' +
+          '正确率 <b>' + Math.round(ok / TOTAL * 100) + '%</b>' +
+        '</div>' +
+        '<div class="secscores">' + secHtml + '</div>' +
+      '</div>';
+
+    var wrong = [], missed = [];
+    SECTIONS.forEach(function(s){
+      DATA[s.key].forEach(function(q){
+        var g = state.graded[qid(s.key,q.no)];
+        if(!g || g.ok) return;
+        (g.unanswered ? missed : wrong).push({sec:s.key, q:q, g:g, title:s.title});
+      });
+    });
+
+    if(!wrong.length && !missed.length){
+      $('wrongList').innerHTML = '<p class="empty">' +
+        (ok ? '全部答对，没有错题。' : '还没有作答记录，先去做题吧。') + '</p>';
+      return;
+    }
+
+    var item = function(w){
+      return '<div class="wrongitem' + (w.g.unanswered ? ' miss' : '') +
+             '" data-sec="' + w.sec + '" data-no="' + w.q.no + '">' +
+             '<p class="s"><b>' + w.title.charAt(0) + '·' + w.q.no + '</b>　' + esc(w.q.stem) + '</p>' +
+             '<p class="a">' + pickLine(w) + '</p></div>';
+    };
+
+    var html = '';
+    if(wrong.length){
+      html += '<p class="sub">答错 ' + wrong.length + ' 题（点击可跳回原题查看）</p>';
+      html += wrong.map(item).join('');
+    }
+    if(missed.length){
+      html += '<p class="sub">未作答 ' + missed.length + ' 题（点击可跳回原题查看）</p>';
+      html += missed.map(item).join('');
+    }
+    $('wrongList').innerHTML = html;
+
+    Array.prototype.forEach.call($('wrongList').querySelectorAll('.wrongitem'), function(el){
+      el.addEventListener('click', function(){
+        closeModal();
+        var t = $(el.getAttribute('data-sec') + '-' + el.getAttribute('data-no'));
+        if(t){
+          t.scrollIntoView({behavior:'smooth', block:'center'});
+          t.classList.add('flash');
+          setTimeout(function(){ t.classList.remove('flash'); }, 1400);
+        }
+      });
+    });
+  }
+
+  // 按当前页面显示的选项字母呈现，保证与卡片一致
+  function pickLine(w){
+    var disp = displayOpts(w.sec, w.q);
+    var posOf = function(t){
+      for(var i=0;i<disp.length;i++){ if(disp[i].text === t) return i; }
+      return 99;
+    };
+    var letterOf = function(t){
+      for(var i=0;i<disp.length;i++){ if(disp[i].text === t) return 'ABCD'.charAt(i); }
+      return '';
+    };
+    var byPos = function(a,b){ return posOf(a) - posOf(b); };
+    var ctexts = correctTexts(w.q);
+
+    if(w.q.type === 'tf'){
+      return '你的选择：<span class="' + (w.g.unanswered ? 'mp' : 'no') + '">' +
+             (w.g.unanswered ? '未作答' : (w.g.picked[0] || '')) + '</span>　|　' +
+             '正确答案：<span class="yes">' + (w.q.answer === '√' ? '正确' : '错误') + '</span>';
+    }
+    var right = ctexts.slice().sort(byPos)
+                     .map(function(t){ return letterOf(t) + '.' + t; }).join('　');
+    var mine = w.g.unanswered
+      ? '<span class="mp">未作答</span>'
+      : '<span class="no">' + w.g.picked.slice().sort(byPos)
+          .map(function(t){ return letterOf(t) || t; }).join('、') + '</span>';
+    return '你的选择：' + mine + '　|　正确答案：<span class="yes">' + esc(right) + '</span>';
+  }
+
+  function openResult(){ renderResult(); $('modal').classList.add('on'); }
+  function closeModal(){ $('modal').classList.remove('on'); }
+
+  // ---------- 下一个未答 ----------
+  function nextUnanswered(){
+    var target = null;
+    for(var i=0;i<SECTIONS.length && !target;i++){
+      var s = SECTIONS[i];
+      for(var j=0;j<DATA[s.key].length;j++){
+        var q = DATA[s.key][j];
+        if(!(state.picked[qid(s.key,q.no)] || []).length){ target = qid(s.key,q.no); break; }
+      }
+    }
+    if(!target) return;
+    var t = $(target);
+    if(t){
+      t.scrollIntoView({behavior:'smooth', block:'center'});
+      t.classList.add('flash');
+      setTimeout(function(){ t.classList.remove('flash'); }, 1400);
+    }
+  }
+
+  // ---------- 模式切换 ----------
+  function applyModeUI(){
+    var isExam = (state.mode === 'exam');
+    Array.prototype.forEach.call($('modeSeg').querySelectorAll('button'), function(b){
+      b.classList.toggle('on', b.getAttribute('data-mode') === state.mode);
+    });
+    $('modeHint').innerHTML = isExam
+      ? '先作答全部题目，点底部「<b>提交试卷</b>」后统一判分并给出成绩。'
+      : '每题作答后<b>立即判分</b>并显示正确答案，适合边学边练。多选题需点「确认答案」。';
+    $('footTip').textContent = isExam
+      ? '考试模式：选择答案后点击底部「提交试卷」，系统统一判分并给出成绩。'
+      : '练习模式：选择答案后立即判分并显示正确答案，可随时点「查看答题结果」查看错题。';
+    $('shuffle').disabled = (isExam && state.submitted);
+    updateStats();
+  }
+
+  function resetAll(){
+    state.order = {}; state.picked = {}; state.graded = {}; state.submitted = false;
+    $('shuffle').disabled = false;
+    closeModal();
+    buildAll();
+    applyModeUI();
+  }
+
+  function switchMode(mode){
+    if(state.mode === mode) return;
+    var t = tally();
+    if((t.done + t.pending) > 0 && !confirm('切换模式会清空当前作答记录，确定切换吗？')) return;
+    state.mode = mode;
+    resetAll();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  // ---------- 交互绑定 ----------
+  Array.prototype.forEach.call($('modeSeg').querySelectorAll('button'), function(b){
+    b.addEventListener('click', function(){ switchMode(b.getAttribute('data-mode')); });
+  });
+  $('shuffle').addEventListener('change', function(){
+    if(state.mode === 'exam' && state.submitted) return;
+    state.shuffle = this.checked;
+    state.order = {};          // 重新洗牌
+    buildAll();                // 已判分结果按"文本"保存，重绘后依然正确
+  });
+  $('submitBtn').addEventListener('click', submitPaper);
+  $('nextUnans').addEventListener('click', nextUnanswered);
+  $('reviewBtn').addEventListener('click', openResult);
+  $('resetBtn').addEventListener('click', function(){
+    var t = tally();
+    if((t.done + t.pending) > 0 && !confirm('确定要清空所有作答记录，重新开始吗？')) return;
+    resetAll();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  $('closeBtn').addEventListener('click', closeModal);
+  $('modal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+
+  // ---------- 初始化 ----------
+  $('ttl').textContent = DATA.title;
+  $('mFull').textContent = DATA.meta.fullScore;
+  $('mMin').textContent = DATA.meta.minutes;
+  $('mNote').textContent = DATA.meta.note;
+  state.shuffle = $('shuffle').checked;
+  buildAll();
+  applyModeUI();
+})();
+</script>
+</body>
+</html>
